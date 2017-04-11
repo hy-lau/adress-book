@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<link href="stylesheet.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div id="app">
+
+
+
+		<div class="container panel-body">
+			<h2 class="panel-heading">Adress book</h2>
+
+			<div class="row jumbotron">
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 panel-body">
+
+					<div class="radio">
+						<label>
+							<input type="radio" name="" id="women" value="women"  v-model="genderButton">
+							Women
+						</label>
+						<label>
+							<input type="radio" name="" id="men" value="men" v-model="genderButton">
+							Men
+						</label>
+						<label>
+							<input type="radio" name="" id="men" value="" v-model="genderButton">
+							Tout
+						</label>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 panel-body">
+					<input type="text" class="form-control" v-model="nameInput" placeholder="Enter user first or last name">
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 panel-body">
+					<input type="text" class="form-control" v-model="locationInput" placeholder="Enter city or zipcode">
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 panel-body">
+					<input type="text" class="form-control" placeholder="Enter a pseudonyme" v-model="pseudoInput">
+				</div>
+
+
+
+			</div>
+
+
+
+
+			<div class="row thumbnail media panel-body" v-for="user in filteredUsers">
+
+
+				<!--USER PICTURE-->
+				<div class="media-left media-middle panel-body">
+					<img class="media-object" :src="user.picture.large" alt="user picture">
+				</div>
+
+				<!--USER INFO-->
+				<div class="media-body panel-body">
+					<h3 class="media-heading panel-heading">
+						<span v-if="user.gender === 'male'"> <i class="fa fa-male " aria-hidden="true "></i></span> <span v-else><i class="fa fa-female " aria-hidden="true "></i></span>						- {{user.name.first | capitalize}} {{user.name.last | capitalize}}
+					</h3>
+
+					<span class="label label-info">Pseudo</span> {{user.login.username}}
+
+
+					<ul class="panel-body">
+						<li> <span class="item">Street :</span> {{user.location.street}} </li>
+
+						<li> <span class="item">City :</span> {{user.location.city}}</li>
+						<li> <span class="item">Zipcode :</span> {{user.location.postcode}}</li>
+						<li> <span class="item">Email :</span> {{user.email}}</li>
+						<li> <span class="item">Phone :</span> {{user.phone}}</li>
+						<li> <span class="item">Age :</span> {{user.dob | ageFilter}}</li>
+					</ul>
+				</div>
+
+
+
+				<!--USER BUTTONS-->
+
+
+				<div class="media-right media-bottom">
+
+					<button type="button" class="btn btn-danger media-object" @click="deleteUser(user)"> <i class="fa fa-trash" aria-hidden="true"></i> Delete user</button>
+
+				</div>
+
+
+
+
+
+
+				<!--fin row-->
+			</div>
+			<!--fin du container-->
+		</div>
+
+	</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--Script Vue.js-->
+	<script src="https://unpkg.com/vue@2.2.6 "></script>
+
+	<!--script vue-ressource-->
+	<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js "></script>
+
+	<!--script jquery-->
+	<script src="http://code.jquery.com/jquery.js "></script>
+
+	<!--script bootstrap-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa "
+		crossorigin="anonymous "></script>
+
+		<script src="main.js "></script>
+
+</body>
+
+</html>
